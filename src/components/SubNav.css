@@ -1,0 +1,16 @@
+.nav-scroller {
+  margin-top: 56px;
+  height: 2.75rem;
+  overflow-y: hidden;
+}
+
+.nav-underline .nav-link {
+  padding-top: .75rem;
+  padding-bottom: .75rem;
+  font-size: .875rem;
+  color: #6c757d;
+}
+.nav-underline .active {
+  font-weight: 500;
+  color: #343a40;
+}
