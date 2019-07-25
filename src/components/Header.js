@@ -3,8 +3,9 @@ import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import {ThemeContext} from '../ThemeContext';
+import {withRouter} from 'react-router-dom';
 
-const Header = () => {
+const Header = (props) => {
   const [theme, setTheme] = useContext(ThemeContext);
   return(
     <Navbar 
@@ -18,9 +19,13 @@ const Header = () => {
       <Navbar.Brand href="#home">CloaKey</Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
-        <Nav className="ml-auto mr-5">
-          <NavDropdown title="Admin" id="basic-nav-dropdown">
-            <NavDropdown.Item href="#action/3.1">Manage Acount</NavDropdown.Item>
+        <Nav className="ml-auto">
+          <NavDropdown alignRight title="Admin" id="basic-nav-dropdown">
+            <NavDropdown.Item
+              onClick={() => {props.history.push('/manage-account')}}
+              >
+              Manage Acount
+            </NavDropdown.Item>
             <NavDropdown.Divider />
             <NavDropdown.Item href="#action/3.2">Sign Out</NavDropdown.Item>
           </NavDropdown>
@@ -30,4 +35,4 @@ const Header = () => {
   )
 }
 
-export default Header;
+export default withRouter(Header);

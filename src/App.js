@@ -10,6 +10,7 @@ import Admin from './components/Admin';
 import ThemeEditor from './pages/ThemeEditor';
 
 import {ThemeContext} from './ThemeContext';
+import ManageAccount from './pages/ManageAccount';
 
 // import './App.css';
 
@@ -26,6 +27,7 @@ function App() {
             <Route path='/' exact component={Login} />
             <AdminLayoutRoute path="/admin" component={Admin} />
             <AdminLayoutRoute path="/theme" component={ThemeEditor} />
+            <AdminLayoutRoute path="/manage-account" component={ManageAccount} />
           </Switch>
         </div>
       </ThemeProvider>
