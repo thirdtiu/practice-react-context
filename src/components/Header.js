@@ -7,6 +7,12 @@ import {withRouter} from 'react-router-dom';
 
 const Header = (props) => {
   const [theme, setTheme] = useContext(ThemeContext);
+
+  const handleSignOut = () => {
+    // sign out codes
+    //redirect to login
+    props.history.push('/');
+  }
   return(
     <Navbar 
       variant="dark" 
@@ -32,7 +38,7 @@ const Header = (props) => {
               Theme Options
             </NavDropdown.Item>
             <NavDropdown.Divider />
-            <NavDropdown.Item href="#action/3.2">Sign Out</NavDropdown.Item>
+            <NavDropdown.Item onClick={handleSignOut}>Sign Out</NavDropdown.Item>
           </NavDropdown>
         </Nav>
       </Navbar.Collapse>
