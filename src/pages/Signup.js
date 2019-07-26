@@ -3,11 +3,10 @@ import Container from 'react-bootstrap/Container';
 import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
 import Navbar from 'react-bootstrap/Navbar';
-import LoginForm from '../components/LoginForm';
+import SignupForm from '../components/SignupForm';
 import {ThemeContext} from '../ThemeContext';
-import './Login.css';
 
-const Login = (props) => {
+const Signup = (props) => {
   const [theme, setTheme] = useContext(ThemeContext);
   return(
     <div 
@@ -25,22 +24,20 @@ const Login = (props) => {
           >
           <Navbar.Brand href="#home">CloaKey</Navbar.Brand>
         </Navbar>
-      
-      <h1 className="text-center mt-5">Login to your account</h1>
+        <h1 className="text-center mt-5">Create your account</h1>
       <Container 
-        className="d-flex justify-content-center"
+        className="d-flex align-items-center justify-content-center"
         style={{
           backgroundColor: theme.bodyBackgroundColor
         }}
         >
         <Col md={5}>
-          <hr />
-          <LoginForm />
-            
+          <hr/>
+          <SignupForm />
         </Col>
       </Container>
     </div>
   );
 }
 
-export default Login;
+export default Signup;

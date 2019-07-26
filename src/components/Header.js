@@ -26,6 +26,11 @@ const Header = (props) => {
               >
               Manage Acount
             </NavDropdown.Item>
+            <NavDropdown.Item
+              onClick={() => {props.history.push('/theme')}}
+              >
+              Theme Options
+            </NavDropdown.Item>
             <NavDropdown.Divider />
             <NavDropdown.Item href="#action/3.2">Sign Out</NavDropdown.Item>
           </NavDropdown>

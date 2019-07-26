@@ -6,11 +6,12 @@ import AdminLayoutRoute from './components/AdminLayoutRoute';
 import {ThemeProvider} from './ThemeContext';
 import AdminLayout from './components/AdminLayout';
 import Login from './pages/Login';
+import Signup from './pages/Signup';
 import Admin from './components/Admin';
 import ThemeEditor from './pages/ThemeEditor';
-
-import {ThemeContext} from './ThemeContext';
 import ManageAccount from './pages/ManageAccount';
+import {ThemeContext} from './ThemeContext';
+
 
 // import './App.css';
 
@@ -25,6 +26,7 @@ function App() {
         <div className="App">
           <Switch>
             <Route path='/' exact component={Login} />
+            <Route path='/signup' exact component={Signup} />
             <AdminLayoutRoute path="/admin" component={Admin} />
             <AdminLayoutRoute path="/theme" component={ThemeEditor} />
             <AdminLayoutRoute path="/manage-account" component={ManageAccount} />
