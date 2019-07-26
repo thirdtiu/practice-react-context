@@ -11,10 +11,16 @@ const LoginForm = (props) => {
 
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const handleLogin = (e) => {
-    e.preventDefault();
-    console.log('username & passwore: ', username, password)
-    props.history.push('/admin')
+  const [validated, setValidated] = useState(false);
+
+  const handleSubmit = (e) => {
+    const form = e.currentTarget;
+    if (form.checkValidity() === false) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+
+    setValidated(true);
   }
 
   const handleUsernameInput = (e) => {
@@ -24,21 +30,40 @@ const LoginForm = (props) => {
   const handlePasswordInput = (e) => {
     setPassword(e.target.value)
   }
+
   return(
-    <Form>
+    <Form noValidate validated={validated} onSubmit={handleSubmit}>
       <Form.Group controlId="formUsername">
-        <Form.Control size="lg" type="text" placeholder="Username" onChange={handleUsernameInput} />
+        <Form.Control
+          required
+          size="lg" 
+          type="text" 
+          placeholder="Username" 
+          onChange={handleUsernameInput}
+        />
+        <Form.Control.Feedback type="invalid">
+          Please provide your username.
+        </Form.Control.Feedback>
       </Form.Group>
 
       <Form.Group controlId="formPassword">
-        <Form.Control size="lg" type="password" placeholder="Password" onChange={handlePasswordInput} />
+        <Form.Control 
+          required
+          size="lg" 
+          type="password" 
+          placeholder="Password" 
+          onChange={handlePasswordInput}
+        />
+        <Form.Control.Feedback type="invalid">
+          Please provide your password.
+        </Form.Control.Feedback>
       </Form.Group>
 
       <div>
-        <Button className="mb-3" variant="primary" size="lg" block type="submit" onClick={handleLogin}>
+        <Button className="mb-3" variant="primary" size="lg" block type="submit" onClick={handleSubmit}>
           Submit
         </Button>
-        <p className="mb-1 text-right">New User? <Link to="/signup">Signup here.</Link></p>
+        <p className="mb-1 text-right">New User? <Link to="/signup">Sign up here.</Link></p>
         <p className="text-right">Forgot Password?</p>
       </div>
     </Form>

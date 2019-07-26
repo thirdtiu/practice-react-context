@@ -8,11 +8,13 @@ import {withRouter} from 'react-router-dom'
 const SignupForm = (props) => {
 
   const [theme, setTheme] = useContext(ThemeContext);
-
+  
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [email, setEmail] = useState('');
+
+  const [validated, setValidated] = useState(false)
   const handleLogin = (e) => {
     e.preventDefault();
     console.log('username & passwore: ', username, email, password, confirmPassword)
@@ -42,29 +44,67 @@ const SignupForm = (props) => {
     setConfirmPassword('');
     props.history.push('/')
   }
+
+  const handleSubmit = (e) => {
+    const form = e.currentTarget;
+    if (form.checkValidity() === false) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+
+    setValidated(true);
+  }
   return(
-    <Form>
+    <Form noValidate validated={validated} onSubmit={handleSubmit}>
       <Form.Group controlId="formUsername">
-        <Form.Control size="lg" type="text" placeholder="Username" onChange={handleUsernameInput} />
+        <Form.Control 
+          required
+          size="lg" 
+          type="text" 
+          placeholder="Username" 
+          onChange={handleUsernameInput}
+        />
+        <Form.Control.Feedback type="invalid">Username is required.</Form.Control.Feedback>
       </Form.Group>
 
       <Form.Group controlId="formEmail">
-        <Form.Control size="lg" type="text" placeholder="Email Address" onChange={handleEmailInput} />
+        <Form.Control 
+          required
+          size="lg" 
+          type="text" 
+          placeholder="Email Address" 
+          onChange={handleEmailInput} 
+        />
+        <Form.Control.Feedback type="invalid">Email is required.</Form.Control.Feedback>
       </Form.Group>
 
       <Form.Group controlId="formPassword">
-        <Form.Control size="lg" type="password" placeholder="Password" onChange={handlePasswordInput} />
+        <Form.Control
+          required
+          size="lg" 
+          type="password" 
+          placeholder="Password" 
+          onChange={handlePasswordInput} 
+        />
+        <Form.Control.Feedback type="invalid">Password is required.</Form.Control.Feedback>
       </Form.Group>
 
       <Form.Group controlId="formConfirmPassword">
-        <Form.Control size="lg" type="password" placeholder="Confirm Password" onChange={handleConfirmPasswordInput} />
+        <Form.Control 
+          required
+          size="lg" 
+          type="password" 
+          placeholder="Confirm Password" 
+          onChange={handleConfirmPasswordInput}
+        />
+        <Form.Control.Feedback type="invalid">Confirm Password is required.</Form.Control.Feedback>
       </Form.Group>
 
       <div className="text-right">
         <Button size="lg" variant="default" type="button" onClick={handleCancel}>
           Cancel
         </Button>
-        <Button size="lg" variant="primary" type="submit" onClick={handleLogin}>
+        <Button size="lg" variant="primary" type="submit" onClick={handleSubmit}>
           Submit
         </Button>
       </div>
